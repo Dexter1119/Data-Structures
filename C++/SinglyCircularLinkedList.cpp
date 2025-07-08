@@ -15,8 +15,7 @@ typedef struct node
     int data;
     struct node *next;
 
-}NODE,*PNODE,**PPNODE;
-
+}NODE,*PNODE;
 
 class SinglyCLL
 {
@@ -25,25 +24,47 @@ class SinglyCLL
         PNODE last;
         int iCount;
     public:
-        SinglyCLL()
-        {
-            this -> first = NULL;
-            this -> last = NULL;
-            this -> iCount = 0;
-        }
+        SinglyCLL();
+
         void Display();
         int Count();
 
         void InsertFirst(int no);
         void InsertLast(int no);
         void InsertAtPos(int no,int pos);
-        
+
         void DeleteFirst();
         void DeleteLast();
         void DeleteAtPos(int pos);  
-
 };
 
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : SinglyCLL
+// Description   : Constructor to initialize data members
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : SinglyCLL::SinglyCLL()
+// Input Output  : (0 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
+SinglyCLL::SinglyCLL()
+{
+    this -> first = NULL;
+    this -> last = NULL;
+    this -> iCount = 0;
+}
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : Display
+// Description   : Displays all elements of the list
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::Display()
+// Input Output  : (0 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::Display()
 {
     PNODE temp = NULL;
@@ -57,14 +78,34 @@ void SinglyCLL::Display()
     cout<<"NULL"<<endl;
 }
 
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : Count
+// Description   : Returns number of elements in the list
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : int SinglyCLL::Count()
+// Input Output  : (0 input, 1 output)
+//
+////////////////////////////////////////////////////////////////////
 int SinglyCLL::Count()
 {
     return iCount;   
 }
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : InsertFirst
+// Description   : Inserts new node at the beginning
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::InsertFirst(int no)
+// Input Output  : (1 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::InsertFirst(int no)
 {
     PNODE newn = NULL;
-    
     newn = new NODE;
     if(NULL == newn)
     {
@@ -88,10 +129,20 @@ void SinglyCLL::InsertFirst(int no)
     }
     iCount++;
 }
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : InsertLast
+// Description   : Inserts new node at the end
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::InsertLast(int no)
+// Input Output  : (1 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::InsertLast(int no)
 {
     PNODE newn = NULL;
-   
     newn = new NODE;
     if(NULL == newn)
     {
@@ -112,13 +163,23 @@ void SinglyCLL::InsertLast(int no)
         last -> next = newn;
         last = newn;
         last -> next = first;
-        
     }
     iCount++;
 }
 
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : DeleteFirst
+// Description   : Deletes first node from the list
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::DeleteFirst()
+// Input Output  : (0 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::DeleteFirst()
-{   PNODE target =NULL;
+{
+    PNODE target =NULL;
 
     if(first == NULL && NULL == last)
     {
@@ -133,6 +194,17 @@ void SinglyCLL::DeleteFirst()
     }
     iCount--;
 }
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : DeleteLast
+// Description   : Deletes last node from the list
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::DeleteLast()
+// Input Output  : (0 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::DeleteLast()
 {
     PNODE target =NULL;
@@ -158,11 +230,20 @@ void SinglyCLL::DeleteLast()
     iCount--;
 }
 
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : InsertAtPos
+// Description   : Inserts new node at the given position
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::InsertAtPos(int no, int pos)
+// Input Output  : (2 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::InsertAtPos(int no,int pos)
 {
     PNODE newn = NULL;
     PNODE temp = NULL;
-
     int iCnt = 0;
 
     if(pos < 1 || pos > iCount+1)
@@ -177,7 +258,6 @@ void SinglyCLL::InsertAtPos(int no,int pos)
     else if(pos == iCount+1)
     {
         InsertLast(no);
-
     }
     else
     {
@@ -202,11 +282,21 @@ void SinglyCLL::InsertAtPos(int no,int pos)
         iCount++;
     }
 }
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Name : DeleteAtPos
+// Description   : Deletes node at given position
+// Author        : Pradhumnya Changdev Kalsait
+// Date          : 03/07/25
+// Prototype     : void SinglyCLL::DeleteAtPos(int pos)
+// Input Output  : (1 input, 0 output)
+//
+////////////////////////////////////////////////////////////////////
 void SinglyCLL::DeleteAtPos(int pos)
 {
     PNODE target = NULL;
     PNODE temp = NULL;
-
     int iCnt = 0;
 
     if(pos < 1 || pos > iCount)
@@ -221,7 +311,6 @@ void SinglyCLL::DeleteAtPos(int pos)
     else if(pos == iCount)
     {
         DeleteLast();
-
     }
     else
     {
@@ -239,10 +328,8 @@ void SinglyCLL::DeleteAtPos(int pos)
     }
 }
 
-
 int main()
 {
-
     SinglyCLL sobj;
     int iValue = 0;
     int iChoice = 0;
@@ -275,22 +362,19 @@ int main()
             printf("Thank You For Using The Application\n");
             printf("\n-----------------------------------------------------------------\n"); 
             break;
-
-
         }
         else if(iChoice == 1)
         {
             printf("Enter The data that you wanna insert First:");
             scanf("%d",&iValue);
             sobj.InsertFirst(iValue);
-            printf("element inserted at first position successfully\n",iPos);
+            printf("element inserted at first position successfully\n");
         }
         else if(iChoice == 2)
         {
             printf("Enter The data that you wanna insert last:");
             scanf("%d",&iValue);
             sobj.InsertLast(iValue);
-
         }
         else if(iChoice == 3)
         {
@@ -300,12 +384,11 @@ int main()
             scanf("%d",&iPos);
             sobj.InsertAtPos(iValue,iPos);
             printf("element inserted at %d Position successfully\n",iPos);
-
         }
         else if(iChoice == 4)
         {
             printf("Deleting the first Element");
-            sobj.DeleteLast();
+            sobj.DeleteFirst();
         }
         else if(iChoice == 5)
         {
@@ -329,12 +412,10 @@ int main()
             iRet = sobj.Count();
             printf("No of Elements in the Linked List are :%d\n",iRet);
         }
-        
         else
         {
             printf("Invalid Choice");
         }
-
     }
 
     return 0;
